@@ -5,7 +5,7 @@ plants = {}
 for line in range(numbers):
     plant_name, rarity = input().split("<->")
     rarity = int(rarity)
-    plants[plant_name] = {"rarity": rarity, "ratings": []}  # (store all ratings)
+    plants[plant_name] = {"rarity": rarity, "rating": []}  # (store all ratings)
 
 
 command = input()
@@ -16,7 +16,7 @@ while not command == "Exhibition":
         plant, rating = command_params.split(" - ")
         rating = int(rating)
         if plant in plants:
-            plants[plant]['ratings'].append(rating)   # add the given rating to the plant
+            plants[plant]['rating'].append(rating)   # add the given rating to the plant
         else:
             print('error')
 
@@ -28,7 +28,7 @@ while not command == "Exhibition":
         else:
             print('error')
 
-    elif split_command == "Resent":
+    elif split_command == "Reset":
         plant = command_params
         if plant in plants:
             plants[plant]['rating'].clear()  # plants[plant]['rating'] = []   # remove all the ratings of the given plant
@@ -39,8 +39,8 @@ while not command == "Exhibition":
 
 # plants should be sorted average rating
 for plant_name, value in plants.items():
-    if value['ratings']:
-        average = sum(value['ratings']) / len(value['ratings'])
+    if value['rating']:
+        average = sum(value['rating']) / len(value['rating'])
     else:
         average = 0
     plants[plant_name]['average'] = average
